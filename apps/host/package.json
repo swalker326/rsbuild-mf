@@ -10,7 +10,11 @@
     "format": "biome format --write",
     "preview": "rsbuild preview"
   },
+  "zephyr:dependencies": {
+    "remote": "remote.rsbuild-mf.swalker326@*"
+  },
   "dependencies": {
+    "@module-federation/rsbuild-plugin": "^0.16.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

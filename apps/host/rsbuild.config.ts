@@ -1,4 +1,4 @@
-import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
+import { pluginModuleFederation } from "@module-federation/rsbuild-plugin";
 import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
 import { mfConfig } from "./module-federation.config";
@@ -11,10 +11,9 @@ export default defineConfig({
   html: {
     title: "Host App"
   },
-  plugins: [pluginReact(), pluginRsbuildZephyr()],
-  tools: {
-    rspack: {
-      plugins: [new ModuleFederationPlugin(mfConfig)]
-    }
-  }
+  plugins: [
+    pluginReact({ splitChunks: { react: false } }),
+    pluginModuleFederation(mfConfig, {}),
+    pluginRsbuildZephyr()
+  ]
 });
