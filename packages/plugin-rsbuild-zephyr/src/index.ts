@@ -4,8 +4,6 @@ import { withZephyr } from "zephyr-rspack-plugin";
 export const pluginRsbuildZephyr = (): RsbuildPlugin => ({
   name: "plugin-rsbuild-zephyr",
   setup(api) {
-    console.log("plugin-rsbuild-zephyr setup");
-
     api.onBeforeCreateCompiler(async ({ bundlerConfigs }) => {
       if (!bundlerConfigs.length) {
         console.warn("No bundler configs found, skipping Zephyr plugin setup.");
@@ -18,12 +16,8 @@ export const pluginRsbuildZephyr = (): RsbuildPlugin => ({
         return;
       }
       const zePlugin = zeConfig.plugins.find((plugin) => {
-        // //@ts-expect-error
-        console.log("Checking plugin:", plugin);
         //@ts-expect-error
         if (plugin && plugin._options && plugin._options.name) {
-          //@ts-expect-error
-          console.log("Found plugin with name:", plugin._options.name);
           //@ts-expect-error
           return plugin._options.name === "ZeRspackPlugin";
         }

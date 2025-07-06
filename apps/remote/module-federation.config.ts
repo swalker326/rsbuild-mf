@@ -1,19 +1,11 @@
 import { createModuleFederationConfig } from "@module-federation/enhanced";
 
 export const mfConfig = createModuleFederationConfig({
+  filename: "remoteEntry.js",
   name: "remote",
   exposes: {
-    "./Module": "./src/App.tsx",
+    "./Remote": "./src/App"
   },
-  filename: "remoteEntry.js",
-  shared: {
-    react: {
-      singleton: true,
-      requiredVersion: false,
-    },
-    "react-dom": {
-      singleton: true,
-      requiredVersion: false,
-    },
-  },
-})
+  dts: false,
+  shared: ["react", "react-dom"]
+});
